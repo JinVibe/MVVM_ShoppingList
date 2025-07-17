@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -36,7 +38,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -45,4 +46,33 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    // Kotlin Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Jetpack
+    implementation(libs.androidx.core.ktx.v1131) // legacy 대체
+    implementation(libs.androidx.appcompat.v161) // legacy 대체
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core.v180)
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Material (이미 libs.material 있으니 중복 제거 가능)
+    implementation(libs.material.v1110)
+
+    // ViewModel
+    implementation (libs.androidx.lifecycle.extensions)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    ksp (libs.androidx.lifecycle.compiler)
+
+    // Kodein DI
+    implementation(libs.kodein.di)
+    implementation(libs.kodein.di.framework.android.x)
 }
